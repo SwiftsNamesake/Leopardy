@@ -31,6 +31,7 @@ import Control.Monad (when, forM_) --
 import Data.Complex
 
 import qualified Southpaw.Picasso.Palette as Palette --
+import Southpaw.Picasso.RenderUtils                  --
 
 import Jeopardy.Core --
 
@@ -104,16 +105,6 @@ renderCategory (cx:+cy) (dx:+dy) pady (Category { _questions=q, _title=t }) = do
 
 
 -- General rendering utilities --------------------------------------------------------------------
--- |
--- TODO: General anchor (?)
-renderCentredText :: Point -> String -> Cairo.Render ()
-renderCentredText (cx:+cy) text = do
-	extents <- Cairo.textExtents text
-	let (w, h) = (Cairo.textExtentsWidth extents, Cairo.textExtentsHeight extents)
-	Cairo.moveTo (cx-w/2) (cy+h/2)
-	Cairo.showText text
-
-
 -- |
 renderCircle :: Double -> Point -> Cairo.Render ()
 renderCircle radius (cx:+cy) = Cairo.arc cx cy radius 0 τ
